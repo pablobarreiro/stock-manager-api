@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 require('dotenv').config({path:'.env'});
 
 const db = new Sequelize('stockman', null, null, {
-  host: 'localhost',
+  host: process.env.HOST,
   dialect: 'postgres'
 })
 
