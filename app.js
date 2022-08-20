@@ -7,11 +7,16 @@ const LocalStrategy = require("passport-local");
 const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const routes = require("./routes");
+const cors = require('cors')
 require("dotenv").config({ path: ".env" });
 const db = require("./db");
 const { User } = require("./models")
 
+const corsOptions = {origin: process.env.CLIENT_BASE_URI}
+
 app.use(morgan("tiny"));
+
+app.use(cors(corsOptions))
 
 // parser
 app.use(bodyParser.json());
