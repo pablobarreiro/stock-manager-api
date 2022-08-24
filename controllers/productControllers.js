@@ -19,6 +19,14 @@ module.exports = {
       console.log(err);
     }
   },
+  bulkAdd: async (req, res) => {
+    try {
+      const products = await Product.bulkCreate(req.body)
+      res.sendStatus(201);
+    } catch (err) {
+      console.log(err);
+    }
+  },
   edit: async (req, res) => {
     try {
         const product = await Product.findByPk(req.params.id)
@@ -31,6 +39,14 @@ module.exports = {
   delete: async (req, res) => {
     try {
       await Product.destroy({where:{id:req.params.id}});
+      res.sendStatus(204);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  clearDB: async (req, res) => {
+    try {
+      await Product.destroy({where:{}});
       res.sendStatus(204);
     } catch (err) {
       console.log(err);
